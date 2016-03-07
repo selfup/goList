@@ -23,7 +23,7 @@ func TestList_Insert_InsertTwoDataPoints(t *testing.T) {
 	}
 }
 
-func TestList_Insert_InsertTwoDataPoints(t *testing.T) {
+func TestList_Include_CanFindData(t *testing.T) {
 	list := createList()
 
 	list.insert("data1")

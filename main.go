@@ -26,8 +26,8 @@ func (l *List) tail(currentNode *Node) *Node {
 	return l.tail(currentNode.nextNode)
 }
 
-func (l *List) traverse(n *Node, cond func(string) bool) *Node {
-	if cond(n.data) {
+func (l *List) traverse(n *Node, cond func(*Node) bool) *Node {
+	if cond(n) {
 		return n
 	} else if n.nextNode == nil {
 		return nil
@@ -37,13 +37,23 @@ func (l *List) traverse(n *Node, cond func(string) bool) *Node {
 }
 
 func (l *List) include(d string) bool {
-	cond := func(s string) bool {
-		return s == d
+	cond := func(n *Node) bool {
+		return n.data == d
 	}
 	if l.traverse(l.head, cond) != nil {
 		return true
 	}
 	return false
+}
+
+func (l *List) pop() *Node {
+	tailSeeker := func(n *Node) bool {
+		return n.nextNode.nextNode == nil
+	}
+	node := l.traverse(l.head, tailSeeker)
+	r := node.nextNode
+	node.nextNode = nil
+	return r
 }
 
 func (l *List) insert(data string) {

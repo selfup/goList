@@ -1,7 +1,5 @@
 package linkedList
 
-import "fmt"
-
 // List is a thing
 type List struct {
 	head *Node
@@ -22,7 +20,6 @@ func createList() *List {
 }
 
 func (l *List) tail(currentNode *Node) *Node {
-	fmt.Println("The data: ", currentNode)
 	if currentNode.nextNode == nil {
 		return currentNode
 	}
